@@ -2,10 +2,11 @@ package rpc
 
 import (
 	"fmt"
-	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/receiver"
 	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/receiver"
+	"github.com/streadway/amqp"
 )
 
 type (

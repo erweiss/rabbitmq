@@ -3,8 +3,9 @@ package sender
 import (
 	"fmt"
 	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
 	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
 )
 
 type (
@@ -44,7 +45,7 @@ func Send(s RabbitMQSender, message *messaging.Message) error {
 	return nil
 }
 
-func Connect(s RabbitMQSender) ( *amqp.Channel, error) {
+func Connect(s RabbitMQSender) (*amqp.Channel, error) {
 
 	strConnection := fmt.Sprintf("amqp://%s:%s@%s:5672/", s.GetUser(), s.GetPassword(), s.GetHost())
 

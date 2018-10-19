@@ -2,10 +2,11 @@ package rabbitmq
 
 import (
 	"testing"
-	"github.comcast.com/viper-cog/rabbitmq/receiver"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/sender"
 	"time"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/receiver"
+	"github.com/erweiss/rabbitmq/sender"
 )
 
 func TestSimpleMessage(t *testing.T) {
@@ -46,7 +47,6 @@ func TestSimpleMessage_InvalidReceivingQueue_ShouldFail(t *testing.T) {
 		t.Errorf("Failed: receiver address is reachable. %s", err)
 	}
 }
-
 
 func GetReceiver(host string, notification string) messaging.Receiver {
 	return (receiver.NewSimpleReceiver(host, notification))

@@ -3,9 +3,10 @@ package rabbitmq
 import (
 	"testing"
 
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/rpc"
 	"fmt"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/rpc"
 )
 
 func TestRpcMessage(t *testing.T) {
@@ -53,7 +54,6 @@ func TestRpcMessage_InvalidReceivingQueue_ShouldFail(t *testing.T) {
 	} else {
 		t.Errorf("Failed: server address is reachable. %s", err)
 	}
-
 
 }
 

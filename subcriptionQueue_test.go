@@ -2,9 +2,10 @@ package rabbitmq
 
 import (
 	"testing"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/subscriptions"
 	"time"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/subscriptions"
 )
 
 func TestSubscriptionMessage(t *testing.T) {

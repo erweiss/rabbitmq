@@ -1,8 +1,8 @@
 package sender
 
 import (
+	"github.com/erweiss/rabbitmq/messaging"
 	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
 )
 
 type (

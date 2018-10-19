@@ -1,11 +1,12 @@
 package worker
 
 import (
-	"log"
-	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/receiver"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
 	"fmt"
+	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/receiver"
+	"github.com/streadway/amqp"
 )
 
 type (
@@ -20,7 +21,7 @@ func NewWorker(host string, notification string) *RabbitMQWorker {
 	}
 }
 
-func (w RabbitMQWorker) Consume() (<-chan *messaging.Message, error){
+func (w RabbitMQWorker) Consume() (<-chan *messaging.Message, error) {
 	return receiver.Consume(w)
 }
 
@@ -70,23 +71,23 @@ func (w RabbitMQWorker) DeclareQueue(channel *amqp.Channel) (*amqp.Queue, error)
 
 	q, err := channel.QueueDeclare(
 		w.GetNotification(), // name
-		w.IsDurable(),    // durable
-		false,       // delete when unused
-		false,       // exclusive
-		false,       // no-wait
-		nil,         // arguments
+		w.IsDurable(),       // durable
+		false,               // delete when unused
+		false,               // exclusive
+		false,               // no-wait
+		nil,                 // arguments
 	)
 	return &q, err
 }
 
 func (w RabbitMQWorker) ConsumeChannel(queue *amqp.Queue, channel *amqp.Channel) (<-chan amqp.Delivery, error) {
 	return channel.Consume(
-		queue.Name, // queue
-		"",     				// consumer
-		w.IsAutoAck(), 	// auto-ack
-		false,  // exclusive
-		false,  // no-local
-		false,  // no-wait
-		nil,    // args
+		queue.Name,    // queue
+		"",            // consumer
+		w.IsAutoAck(), // auto-ack
+		false,         // exclusive
+		false,         // no-local
+		false,         // no-wait
+		nil,           // args
 	)
 }

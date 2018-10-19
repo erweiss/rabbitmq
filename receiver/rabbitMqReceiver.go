@@ -1,10 +1,11 @@
 package receiver
 
 import (
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.com/streadway/amqp"
 	"fmt"
 	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/streadway/amqp"
 )
 
 type (
@@ -23,7 +24,7 @@ type (
 	}
 )
 
-func Consume(r RabbitMQReceiver) (<-chan *messaging.Message, error){
+func Consume(r RabbitMQReceiver) (<-chan *messaging.Message, error) {
 
 	out := make(chan *messaging.Message)
 
@@ -66,7 +67,7 @@ func Consume(r RabbitMQReceiver) (<-chan *messaging.Message, error){
 	return out, nil
 }
 
-func Connect(r RabbitMQReceiver) ( *amqp.Channel, error) {
+func Connect(r RabbitMQReceiver) (*amqp.Channel, error) {
 
 	strConnection := fmt.Sprintf("amqp://%s:%s@%s:5672/", r.GetUser(), r.GetPassword(), r.GetHost())
 

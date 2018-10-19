@@ -2,9 +2,10 @@ package task
 
 import (
 	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/sender"
 	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/sender"
 )
 
 type (
@@ -26,25 +27,25 @@ func (t *RabbitMQTask) Send(message *messaging.Message) error {
 func (t *RabbitMQTask) DeclareQueue(channel *amqp.Channel, message *messaging.Message) error {
 	_, err := channel.QueueDeclare(
 		message.Notification, // name
-		t.IsDurable(),   // durable
-		false,   // delete when unused
-		false,   // exclusive
-		false,   // no-wait
-		nil,     // arguments
+		t.IsDurable(),        // durable
+		false,                // delete when unused
+		false,                // exclusive
+		false,                // no-wait
+		nil,                  // arguments
 	)
 	return err
 }
 
 func (t *RabbitMQTask) Publish(channel *amqp.Channel, message *messaging.Message) error {
 	return channel.Publish(
-		"",     // exchange
+		"",                   // exchange
 		message.Notification, // routing key
-		false,  // mandatory
-		false,  // immediate
+		false,                // mandatory
+		false,                // immediate
 		amqp.Publishing{
 			DeliveryMode: t.GetDeliveryMode(),
-			ContentType: "text/plain",
-			Body:        message.Payload,
+			ContentType:  "text/plain",
+			Body:         message.Payload,
 		})
 }
 

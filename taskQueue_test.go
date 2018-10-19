@@ -2,9 +2,10 @@ package rabbitmq
 
 import (
 	"testing"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/task"
-	"github.comcast.com/viper-cog/rabbitmq/worker"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/task"
+	"github.com/erweiss/rabbitmq/worker"
 )
 
 func TestTaskMessage(t *testing.T) {

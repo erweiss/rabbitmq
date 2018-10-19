@@ -3,22 +3,23 @@ package rpc
 import (
 	"fmt"
 	"log"
-	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/receiver"
-	"github.comcast.com/viper-cog/rabbitmq/sender"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/receiver"
+	"github.com/erweiss/rabbitmq/sender"
 	"github.com/pborman/uuid"
+	"github.com/streadway/amqp"
 )
 
 type (
 	RabbitMQClient struct {
-		sender   *sender.SimpleSender
+		sender *sender.SimpleSender
 	}
 )
 
 func NewClient(host string) *RabbitMQClient {
 	return &RabbitMQClient{
-		sender:   sender.NewSimpleSender(host),
+		sender: sender.NewSimpleSender(host),
 	}
 }
 
@@ -96,7 +97,7 @@ func (c *RabbitMQClient) DeclareQueue(channel *amqp.Channel) (*amqp.Queue, error
 		"",            // name
 		c.IsDurable(), // durable
 		false,         // delete when unused
-		true,         // exclusive
+		true,          // exclusive
 		false,         // no-wait
 		nil,           // arguments
 	)

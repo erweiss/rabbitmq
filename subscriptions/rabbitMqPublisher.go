@@ -1,11 +1,12 @@
 package subscriptions
 
 import (
-	"log"
 	"fmt"
+	"log"
+
+	"github.com/erweiss/rabbitmq/messaging"
+	"github.com/erweiss/rabbitmq/sender"
 	"github.com/streadway/amqp"
-	"github.comcast.com/viper-cog/rabbitmq/messaging"
-	"github.comcast.com/viper-cog/rabbitmq/sender"
 )
 
 type (
